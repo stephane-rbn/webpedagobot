@@ -1,0 +1,20 @@
+{
+  "name": "webpedagobot",
+  "version": "1.0.0",
+  "description": "Webpedagobot programmed to help",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "stephanyan",
+  "license": "MIT",
+  "devDependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^6.1.0",
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "nodemon": "^1.18.5",
+    "slackbots": "^1.2.0"
+  }
+}
