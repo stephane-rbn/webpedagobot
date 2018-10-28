@@ -22,7 +22,8 @@ function chuckJoke() {
 
 // Display the actual temperature in Paris
 function displayWeather() {
-  axios.get(`http://api.openweathermap.org/data/2.5/weather?q=Paris&appid=${process.env.OPEN_WEATHER_APP_KEY}`)
+  const url = encodeURI(`http://api.openweathermap.org/data/2.5/weather?q=Paris&appid=${process.env.OPEN_WEATHER_APP_KEY}`);
+  axios.get(url)
     .then((res) => {
       const temperature = parseFloat(res.data.main.temp) - 273.15;
 
@@ -67,12 +68,12 @@ function handleMessage(message) {
 }
 
 // Start Handler
-bot.on('start', () => {
-  bot.postMessageToChannel(
-    'aléatoire',
-    "Bonjour ! Je suis @webpedagobot. Laissez-moi vous aider en me mentionnant avec 'help'.",
-  );
-});
+// bot.on('start', () => {
+//   bot.postMessageToChannel(
+//     'aléatoire',
+//     "Bonjour ! Je suis @webpedagobot. Laissez-moi vous aider en me mentionnant avec 'help'.",
+//   );
+// });
 
 // Error Handler
 bot.on('error', (err) => {
@@ -81,6 +82,7 @@ bot.on('error', (err) => {
 
 // Message Handler
 bot.on('message', (data) => {
+  console.log(data);
   if (data.type === 'message' && data.username !== 'webpedagobot' && !data.subtype) {
     handleMessage(data);
   }
