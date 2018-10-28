@@ -37,7 +37,7 @@ function displayWeather() {
 function runHelp() {
   bot.postMessageToChannel(
     'aléatoire',
-    "Dites-moi 'météo' pour obtenir la température actuelle à Paris ou 'chucknorris' pour rire un petit coup.",
+    "Dites-moi 'météo' pour obtenir la température actuelle à Paris ou 'Chuck Norris' pour rire un petit coup.",
   );
 }
 
@@ -46,15 +46,19 @@ function handleMessage(message) {
   const messageContent = message.text;
   const messageSender = message.user;
 
+  const greetingsRegex = /salut/i;
+  const chuckNorrisRegex = /chuck ?norris/i;
+  const weatherRegex = /m(é|e)t(é|e)o/i;
+
   if (messageContent.includes('<@UDPPPM1PD>')) {
-    if (messageContent.includes(' Salut')) {
+    if (greetingsRegex.test(messageContent)) {
       bot.postMessageToChannel(
         'aléatoire',
         `Bonjour <@${messageSender}>, en quoi puis-je vous aider ? (dites-moi 'help' pour en savoir plus)`,
       );
-    } else if (messageContent.includes(' chucknorris')) {
+    } else if (chuckNorrisRegex.test(messageContent)) {
       chuckJoke();
-    } else if (messageContent.includes(' météo')) {
+    } else if (weatherRegex.test(messageContent)) {
       displayWeather();
     } else {
       runHelp();
