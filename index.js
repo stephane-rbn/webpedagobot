@@ -46,17 +46,19 @@ function handleMessage(message) {
   const messageContent = message.text;
   const messageSender = message.user;
 
-  if (messageContent.includes(' Salut')) {
-    bot.postMessageToChannel(
-      'aléatoire',
-      `Bonjour <@${messageSender}>, en quoi puis-je vous aider ? (dites-moi 'help' pour en savoir plus)`,
-    );
-  } else if (messageContent.includes(' chucknorris')) {
-    chuckJoke();
-  } else if (messageContent.includes(' météo')) {
-    displayWeather();
-  } else if (messageContent.includes(' help')) {
-    runHelp();
+  if (messageContent.includes('<@UDPPPM1PD>')) {
+    if (messageContent.includes(' Salut')) {
+      bot.postMessageToChannel(
+        'aléatoire',
+        `Bonjour <@${messageSender}>, en quoi puis-je vous aider ? (dites-moi 'help' pour en savoir plus)`,
+      );
+    } else if (messageContent.includes(' chucknorris')) {
+      chuckJoke();
+    } else if (messageContent.includes(' météo')) {
+      displayWeather();
+    } else {
+      runHelp();
+    }
   }
 }
 
@@ -69,15 +71,13 @@ bot.on('start', () => {
 });
 
 // Error Handler
-// bot.on('error', (err) => {
-//   console.log(err);
-// });
+bot.on('error', (err) => {
+  console.log(err);
+});
 
 // Message Handler
 bot.on('message', (data) => {
-  if (data.type !== 'message') {
-    return;
+  if (data.type === 'message' && data.username !== 'webpedagobot' && !data.subtype) {
+    handleMessage(data);
   }
-
-  handleMessage(data);
 });
