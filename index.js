@@ -51,7 +51,7 @@ function handleMessage(message) {
   const chuckNorrisRegex = /chuck ?norris/i;
   const weatherRegex = /m(é|e)t(é|e)o/i;
 
-  if (messageContent.includes('<@UDPPPM1PD>')) {
+  if (messageContent.includes('<@UDRJMD422>')) {
     if (greetingsRegex.test(messageContent)) {
       bot.postMessageToChannel(
         'aléatoire',
